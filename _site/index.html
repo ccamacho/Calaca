@@ -40,9 +40,6 @@ sol {
     <p class='no-results' ng-show='!results.length && !loading'>No Results</p>
     <article class='result' ng-repeat='result in results track by $id(result)'>
       <h2>{{result.title}}</h2>
-      <script>
-       alert({{result.title}});
-      </script>
       <p><err>{{result.err}}</err></p>
       <p><sol>{{result.sol}}</sol></p>
     </article>
