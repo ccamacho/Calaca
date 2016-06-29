@@ -41,8 +41,8 @@ sol {
     <article class='result' ng-repeat='result in results track by $id(result)'>
       <h2>{{result.title}}</h2> 
       <p><h3>{{result.name}}</h3> Author: {{result.author | mayusculas}}</p>
-      <p><err>Solución: {{result.err | lowercase}}</err></p>
-      <p><sol>Error: {{result.sol | mayusculas}}</sol></p>
+      <p><err>Error: {{result.err | lowercase}}</err></p>
+      <p><sol>Sol: {{result.sol | mayusculas}}</sol></p>
       
     </article>
   </section>
