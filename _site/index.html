@@ -56,5 +56,21 @@ sol {
 <script src='js/app.js' type='text/javascript'></script>
 <script src='js/controllers.js' type='text/javascript'></script>
 <script src='js/services.js' type='text/javascript'></script>
+<script type="text/javascript">
+    
+function mayusculasFilter(valor) {
+  if (typeof (valor)==="string") {
+      return valor.replace(/<[^>]*>?/g, '');
+      } else {
+     }
+ 
+}
+  
+function mayusculasFilterFactory() {
+  return mayusculasFilter;
+}
+ 
+app.filter("mayusculas",mayusculasFilterFactory); 
+    </script>
 </body>
 </html>
