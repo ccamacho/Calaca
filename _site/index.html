@@ -14,11 +14,11 @@
     <![endif]-->
 <style>
 err {
-  font-weight: bold;
+  //font-weight: bold;
   color: red;
 }
 sol {
-  font-weight: bold;
+  //font-weight: bold;
   color: green;
 }
 </style>
@@ -42,8 +42,8 @@ sol {
     <p class='no-results' ng-show='!results.length && !loading'>No Results</p>
 
     <article class='result' ng-repeat='result in results  track by $id(result)' style="white-space:pre-wrap;">
-      <h2>{{result.title}}</h2> 
-      <p>{{result.type}}</p> 
+      {{result.title}}<br/> 
+      {{result.type}}<br/> 
       <err>Err: {{result.err | mayusculas}}</err>
       <sol>Sol: {{result.sol | mayusculas}}</sol>
     </article>
