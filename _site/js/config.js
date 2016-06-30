@@ -21,7 +21,7 @@
 var CALACA_CONFIGS = {
 	url: "http://mosquito-ccamacho.rhcloud.com/",
 	index_name: "docs",
-	type: "nits, tips",
+	type: "tips",
 	size: 50,
 	search_delay: 500
 }
