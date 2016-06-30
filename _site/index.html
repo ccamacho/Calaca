@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang='en' >
+
 <head>
+
     <meta charset='utf-8'>
     <title>TripleO bug finder</title>
     <link rel='stylesheet' type='text/css' href='css/reset.css'>
     <link rel='stylesheet' type='text/css' href='css/calaca.css'>
     <script src='bower_components/angular/angular.min.js' type='text/javascript'></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>-->
     <!--[if IE]>
         <script src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script>
     <![endif]-->
@@ -19,10 +22,9 @@ sol {
   color: green;
 }
 </style>
-</head>
-<body ng-app='calaca' ng-controller='calacaCtrl'>
 
-<!-- Title and search box -->
+</head>
+<body  ng-app='calaca' ng-controller='calacaCtrl' >
 <header class='jumbotron'>
   <h1 class='title'>TripleO nit finder</h1>
   <div class='search-box-container'>
@@ -38,13 +40,15 @@ sol {
   </section>
   <section class='results'>
     <p class='no-results' ng-show='!results.length && !loading'>No Results</p>
-    <article class='result' ng-repeat='result in results track by $id(result)'>
+
+    <article class='result' ng-repeat='result in results  track by $id(result)' style="white-space:pre-wrap;">
       <h2>{{result.title}}</h2> 
-      <p><h3>{{result.name}}</h3> Author: {{result.author | mayusculas}}</p>
-      <p><err>Error: {{result.err | mayusculas}}</err></p>
+       <p><h3>{{result.name}}</h3> Author: {{result.author | mayusculas}}</p>
+       <p><err>Solución: {{result.err | mayusculas}}</err></p>
       <br/>
-      <p><sol>Sol: {{result.sol | mayusculas}}</sol></p>
+      <p><sol>Error: {{result.sol | mayusculas}}</sol></p>
       
+       
     </article>
   </section>
   <section class='pagination-controls'>
@@ -55,34 +59,49 @@ sol {
 <!-- Load resources -->
 <script src='bower_components/angular-animate/angular-animate.min.js' type='text/javascript'></script>
 <script src='bower_components/elasticsearch/elasticsearch.angular.min.js' type='text/javascript'></script>
+<script  src='https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.2.29/angular-sanitize.min.js' type="text/javascript"></script>
 <script src='js/config.js' type='text/javascript'></script>
 <script src='js/app.js' type='text/javascript'></script>
 <script src='js/controllers.js' type='text/javascript'></script>
 <script src='js/services.js' type='text/javascript'></script>
-
 <script type="text/javascript">
-  app.filter("sanitize", ['$sce', function(htmlCode) {
-    return function(htmlCode){
-      console.log( "esto esta llegando " + htmlCode);
-      var $salida = htmlCode.toUpperCase();
-      var $salida = htmlCode.replace(/<[^>]*>?/g, '\n');
+    
+
+app.filter("sanitize", ['$sce', function(htmlCode) {
+  return function(htmlCode){
+        console.log( "esto esta llegando " + htmlCode);
+ var $salida = htmlCode.toUpperCase();
+ var $salida = htmlCode.replace(/<[^>]*>?/g, '\n');
       console.log( "esto esta saliendo " + $salida + "lalalal");
-      return $salida;
-    }
-  }]);
+   // return $sce.trustAsHtml(htmlCode);
+  //  return $sce.getTrustedHtml(parsed(htmlCode));
+   // 
+   return $salida;
+  }
+}]);
 
-  function mayusculasFilter(valor) {
+
+
+function mayusculasFilter(valor) {
     return valor.replace(/<[^>]*>?/g, '\r\n' );
-  }
-  
-  function mayusculasFilterFactory() {
-    return mayusculasFilter;
-  }
+  if (typeof (valor)==="string") {
+   //   return valor.replace(/<[^>]*>?/g, '');
+   //return valor.replace(/<[^>]*>?/g, /\n/g);
+    //return valor.replace("<br />", "\n");
+   // return valor.replace( "<br />",/\n/g);
+      } else {
+     }
  
-  app.filter("mayusculas",mayusculasFilterFactory); 
+}
+  
+function mayusculasFilterFactory() {
+  return mayusculasFilter;
+}
+ 
+app.filter("mayusculas",mayusculasFilterFactory); 
 
-</script>
 
+    </script>
 
 </body>
 </html>
