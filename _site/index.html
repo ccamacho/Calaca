@@ -43,8 +43,9 @@ sol {
 
     <article class='result' ng-repeat='result in results  track by $id(result)' style="white-space:pre-wrap;">
       <h2>{{result.title}}</h2> 
-      <p><err>Err: {{result.err | mayusculas}}</err></p>
-      <p><sol>Sol: {{result.sol | mayusculas}}</sol></p>
+      <p>{{result.type}}</p> 
+      <err>Err: {{result.err | mayusculas}}</err>
+      <sol>Sol: {{result.sol | mayusculas}}</sol>
     </article>
   </section>
   <section class='pagination-controls'>
