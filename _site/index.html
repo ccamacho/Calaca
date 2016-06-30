@@ -41,7 +41,8 @@ sol {
     <article class='result' ng-repeat='result in results track by $id(result)'>
       <h2>{{result.title}}</h2> 
       <p><h3>{{result.name}}</h3> Author: {{result.author | mayusculas}}</p>
-      <p><err>Error: {{result.err | lowercase}}</err></p>
+      <p><err>Error: {{result.err | mayusculas}}</err></p>
+      <br/>
       <p><sol>Sol: {{result.sol | mayusculas}}</sol></p>
       
     </article>
@@ -58,21 +59,30 @@ sol {
 <script src='js/app.js' type='text/javascript'></script>
 <script src='js/controllers.js' type='text/javascript'></script>
 <script src='js/services.js' type='text/javascript'></script>
+
 <script type="text/javascript">
-    
-function mayusculasFilter(valor) {
-  if (typeof (valor)==="string") {
-      return valor.replace(/<[^>]*>?/g, '');
-      } else {
-     }
- 
-}
+  app.filter("sanitize", ['$sce', function(htmlCode) {
+    return function(htmlCode){
+      console.log( "esto esta llegando " + htmlCode);
+      var $salida = htmlCode.toUpperCase();
+      var $salida = htmlCode.replace(/<[^>]*>?/g, '\n');
+      console.log( "esto esta saliendo " + $salida + "lalalal");
+      return $salida;
+    }
+  }]);
+
+  function mayusculasFilter(valor) {
+    return valor.replace(/<[^>]*>?/g, '\r\n' );
+  }
   
-function mayusculasFilterFactory() {
-  return mayusculasFilter;
-}
+  function mayusculasFilterFactory() {
+    return mayusculasFilter;
+  }
  
-app.filter("mayusculas",mayusculasFilterFactory); 
-    </script>
+  app.filter("mayusculas",mayusculasFilterFactory); 
+
+</script>
+
+
 </body>
 </html>
