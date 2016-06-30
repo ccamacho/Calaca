@@ -43,12 +43,8 @@ sol {
 
     <article class='result' ng-repeat='result in results  track by $id(result)' style="white-space:pre-wrap;">
       <h2>{{result.title}}</h2> 
-       <p><h3>{{result.name}}</h3> Author: {{result.author | mayusculas}}</p>
-       <p><err>Solución: {{result.err | mayusculas}}</err></p>
-      <br/>
-      <p><sol>Error: {{result.sol | mayusculas}}</sol></p>
-      
-       
+      <p><err>Err: {{result.err | mayusculas}}</err></p>
+      <p><sol>Sol: {{result.sol | mayusculas}}</sol></p>
     </article>
   </section>
   <section class='pagination-controls'>
@@ -69,29 +65,19 @@ sol {
 
 app.filter("sanitize", ['$sce', function(htmlCode) {
   return function(htmlCode){
-        console.log( "esto esta llegando " + htmlCode);
- var $salida = htmlCode.toUpperCase();
- var $salida = htmlCode.replace(/<[^>]*>?/g, '\n');
-      console.log( "esto esta saliendo " + $salida + "lalalal");
-   // return $sce.trustAsHtml(htmlCode);
-  //  return $sce.getTrustedHtml(parsed(htmlCode));
-   // 
-   return $salida;
+    console.log( "esto esta llegando " + htmlCode);
+    var $salida = htmlCode.toUpperCase();
+    var $salida = htmlCode.replace(/<[^>]*>?/g, '\n');
+    console.log( "esto esta saliendo " + $salida + "lalalal");
+    return $salida;
   }
 }]);
 
-
-
 function mayusculasFilter(valor) {
-    return valor.replace(/<[^>]*>?/g, '\r\n' );
+  return valor.replace(/<[^>]*>?/g, '\r\n' );
   if (typeof (valor)==="string") {
-   //   return valor.replace(/<[^>]*>?/g, '');
-   //return valor.replace(/<[^>]*>?/g, /\n/g);
-    //return valor.replace("<br />", "\n");
-   // return valor.replace( "<br />",/\n/g);
-      } else {
-     }
- 
+  } else {
+  }
 }
   
 function mayusculasFilterFactory() {
@@ -99,9 +85,7 @@ function mayusculasFilterFactory() {
 }
  
 app.filter("mayusculas",mayusculasFilterFactory); 
-
-
-    </script>
+</script>
 
 </body>
 </html>
